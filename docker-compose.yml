@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www
+    networks:
+      - laravel-net
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: news_app
+      MYSQL_USER: new_root
+      MYSQL_PASSWORD: 123
+    ports:
+      - "3307:3307"
+    networks:
+      - laravel-net
+networks:
+  laravel-net:
+    driver: bridge

@@ -14,6 +14,17 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'newsapi' => [
+        'key' => env('NEWS_API_KEY'),
+        'base_url' => env('NEWS_API_BASE_URL'),
+    ],
+    'guardianapi' => [
+        'key' => env('GUARDIAN_API_KEY'),
+    ],
+    'nytimeapi' => [
+        'key' => env('NYT_API_KEY'),
+    ],
+
 
     /*
     |--------------------------------------------------------------------------
