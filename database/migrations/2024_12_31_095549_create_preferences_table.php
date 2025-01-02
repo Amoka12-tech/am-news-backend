@@ -18,6 +18,7 @@ class CreatePreferencesTable extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->json('categories')->nullable();
             $table->json('sources')->nullable();
+            $table->json('authors')->nullable();
             $table->timestamps();
         });
     }

@@ -1,64 +1,90 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Project Name: News Aggregator
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This project is a News Aggregator application that fetches and displays news articles from multiple APIs, including NewsAPI, The Guardian, and The New York Times. It is fully Dockerized to simplify setup and deployment.
 
-## About Laravel
+## Prerequisites
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Docker: Ensure you have Docker installed on your machine.
+- Docker Compose: Verify that Docker Compose is available.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Project Structure
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Backend**: Laravel-based backend application.
+- **Docker Configuration**: Docker and Docker Compose files for easy setup.
 
-## Learning Laravel
+## Installation and Setup
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Follow these steps to set up and run the project:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 1. Clone the Repository
 
-## Laravel Sponsors
+```bash
+git clone https://github.com/Amoka12-tech/am-news-backend.git
+cd am-news-backend
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### 2. Environment Configuration
 
-### Premium Partners
+#### Backend
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+1. Copy the `.env.example` file to `.env`:
 
-## Contributing
+   ```bash
+   cp .env.example .env
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2. Update the `.env` file with the necessary API keys and configuration:
 
-## Code of Conduct
+   ```env
+   NEWS_API_KEY=7dc2117ed4dc4e128530cc64d477da39
+   NEWS_API_BASE_URL=https://newsapi.org/v2
+   GUARDIAN_API_KEY=91385ece-f297-44f0-8115-8a1d87411712
+   NYT_API_KEY=VeGCU3Px9G7qgh4zmFXohki1AkN18n4A
+   NYT_API_SECRET=IixtE8geqHS177Rr
+   APP_URL=http://localhost
+   ``
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+3. Install dependencies (optional if not using Docker for dependency management):
 
-## Security Vulnerabilities
+   ```bash
+   composer install
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+4. Start runing project on Docker
 
-## License
+    ```bash
+    docker-compose up --build
+    ```
+5. Run migeration for docker
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    ```bash
+    docker-compose exec backend php artisan migrate
+
+6. Populate News api
+    ```bash
+    docker-compose exec backend php artisan news:scrape
+
+## Testing the Setup
+
+- **Backend**: Use Postman or any HTTP client to test the API endpoints.
+
+## Useful Docker Commands
+
+- Stop all services:
+
+  ```bash
+  docker-compose down
+  ```
+
+- Rebuild containers:
+
+  ```bash
+  docker-compose up --build
+  ```
+
+- View container logs:
+
+  ```bash
+  docker logs <container-name>
+  ```
+

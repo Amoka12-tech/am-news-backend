@@ -72,7 +72,7 @@ class ScrapeNews extends Command {
                     'source' => $source,
                     'title' => $article['title'] ?? $article['webTitle'],
                     'author' => $article['author'] ?? $article['byline'] ?? null,
-                    'description' => $article['description'] ?? $article['abstract'] ?? null,
+                    'description' => $article['description'] ?? $article['abstract'] ?? "",
                     'category' => $article['section'] ?? $article['sectionId'] ?? 'others',
                     'content' => $article['content'] ?? null,
                     'url' => $article['url'] ?? $article['webUrl'],
